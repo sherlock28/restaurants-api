@@ -1,0 +1,15 @@
+services:
+  database:
+    image: postgres:17
+    command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'
+    ports:
+      - 5432:5432
+    env_file:
+      - ./postgres/postgres.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./postgres/conf.d:/etc/postgresql/conf.d
+
+volumes:
+  pgdata:
