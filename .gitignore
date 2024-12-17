@@ -486,3 +486,5 @@ $RECYCLE.BIN/
 appsettings.*.json
 
 postgres/postgres.env
+pgadmin/pgadmin.env
+pgadmin/pgpass
