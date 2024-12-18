@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Restaurants.Infrastructure.Seeders;
 using Restaurants.Infrastructure.Persistence;
 
 namespace Restaurants.Infrastructure.Extensions;
@@ -11,5 +12,7 @@ public static class ServiceCollectionExtensions
 	{
 		var connectionString = configuration.GetConnectionString("RestaurantsDB");
 		services.AddDbContext<RestaurantsDbContext>(options => options.UseNpgsql(connectionString, pgOptions => pgOptions.MigrationsAssembly("Restaurants.Infrastructure")));
+
+		services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
 	}
 }
