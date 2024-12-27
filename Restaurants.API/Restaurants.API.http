@@ -1,5 +1,6 @@
 @Restaurants.API_HostAddress = https://localhost:7285
 
+# Retrieve all restaurants
 GET {{Restaurants.API_HostAddress}}/api/restaurants
 
 ###
@@ -11,3 +12,23 @@ GET {{Restaurants.API_HostAddress}}/api/restaurants/1
 
 # Retrieve a restaurant that does not exist
 GET {{Restaurants.API_HostAddress}}/api/restaurants/999
+
+###
+
+# Create a new restaurant
+POST {{Restaurants.API_HostAddress}}/api/restaurants
+Content-Type: application/json
+
+{
+  "name": "Olive Garden",
+  "description": "A family-friendly restaurant chain offering Italian-American cuisine, including pasta, salads, and soups.",
+  "category": "Italian-American",
+  "hasDelivery": true,
+  "contactEmail": "info@olivegarden.com",
+  "contactNumber": "+18009332527",
+  "city": "Orlando",
+  "street": "123 Pasta Lane",
+  "postalCode": "32-801"
+}
+
+###
