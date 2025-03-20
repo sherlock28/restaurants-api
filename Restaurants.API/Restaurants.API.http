@@ -22,7 +22,7 @@ Content-Type: application/json
 {
   "name": "Olive Garden",
   "description": "A family-friendly restaurant chain offering Italian-American cuisine, including pasta, salads, and soups.",
-  "category": "Italian-American",
+  "category": "Italian",
   "hasDelivery": true,
   "contactEmail": "info@olivegarden.com",
   "contactNumber": "+18009332527",
