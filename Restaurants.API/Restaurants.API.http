@@ -37,3 +37,15 @@ Content-Type: application/json
 DELETE {{Restaurants.API_HostAddress}}/api/restaurants/999
 
 ###
+
+# Update a restaurant
+PATCH {{Restaurants.API_HostAddress}}/api/restaurants/999
+Content-Type: application/json
+
+{
+  "Name": "Updated name",
+  "Description": "This is a sample restaurant description.",
+  "HasDelivery": false
+}
+
+###
