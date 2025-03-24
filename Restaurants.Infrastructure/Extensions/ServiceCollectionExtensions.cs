@@ -13,7 +13,9 @@ public static class ServiceCollectionExtensions
 	public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
 	{
 		var connectionString = configuration.GetConnectionString("RestaurantsDB");
-		services.AddDbContext<RestaurantsDbContext>(options => options.UseNpgsql(connectionString, pgOptions => pgOptions.MigrationsAssembly("Restaurants.Infrastructure")));
+		services.AddDbContext<RestaurantsDbContext>(options => options.UseNpgsql(connectionString, pgOptions => pgOptions.MigrationsAssembly("Restaurants.Infrastructure"))
+		  .EnableSensitiveDataLogging()
+		);
 
 		services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
 		services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
