@@ -49,3 +49,17 @@ Content-Type: application/json
 }
 
 ###
+
+# Create a dish for a restaurant
+
+POST {{Restaurants.API_HostAddress}}/api/restaurant/1/dishes
+Content-Type: application/json
+
+{
+  "Name": "Spaghetti Carbonara",
+  "Description": "Spaghetti with eggs, cheese, bacon, and black pepper.",
+  "Price": 12.99,
+  "Kilocalories": 800
+}
+
+###
