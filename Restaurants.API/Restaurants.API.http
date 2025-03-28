@@ -63,3 +63,18 @@ Content-Type: application/json
 }
 
 ###
+
+# Get dishes for restaurant
+
+@restaurantId=1
+GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes
+
+###
+
+# Get dish by id for restaurant
+
+@restaurantId=1
+@dishId=2
+GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes/{{dishId}}
+
+###
