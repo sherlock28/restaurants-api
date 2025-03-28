@@ -78,3 +78,10 @@ GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes
 GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes/{{dishId}}
 
 ###
+
+# Delete all dishes from restaurant
+
+@restaurantId=2
+DELETE {{Restaurants.API_HostAddress}}/api/restaurant/{restaurantId}/dishes
+
+###
