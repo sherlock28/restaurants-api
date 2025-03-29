@@ -1,4 +1,29 @@
 @Restaurants.API_HostAddress = https://localhost:7285
+@token = abc123
+
+# Login
+
+POST {{Restaurants.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+
+{
+  "Email": "testuser@test.com",
+  "Password": "%Password123%"
+}
+
+###
+
+# Register a new user
+
+POST {{Restaurants.API_HostAddress}}/api/identity/register
+Content-Type: application/json
+
+{
+  "Email": "testuser@test.com",
+  "Password": "%Password123%"
+}
+
+###
 
 # Retrieve all restaurants
 GET {{Restaurants.API_HostAddress}}/api/restaurants
@@ -7,16 +32,19 @@ GET {{Restaurants.API_HostAddress}}/api/restaurants
 
 # Retrieve a restaurant that exists
 GET {{Restaurants.API_HostAddress}}/api/restaurants/1
+Authorization: Bearer {{token}}
 
 ###
 
 # Retrieve a restaurant that does not exist
 GET {{Restaurants.API_HostAddress}}/api/restaurants/999
+Authorization: Bearer {{token}}
 
 ###
 
 # Create a new restaurant
 POST {{Restaurants.API_HostAddress}}/api/restaurants
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -35,11 +63,13 @@ Content-Type: application/json
 
 # Delete a restaurant
 DELETE {{Restaurants.API_HostAddress}}/api/restaurants/999
+Authorization: Bearer {{token}}
 
 ###
 
 # Update a restaurant
 PATCH {{Restaurants.API_HostAddress}}/api/restaurants/999
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -53,6 +83,7 @@ Content-Type: application/json
 # Create a dish for a restaurant
 
 POST {{Restaurants.API_HostAddress}}/api/restaurant/1/dishes
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -68,6 +99,7 @@ Content-Type: application/json
 
 @restaurantId=1
 GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes
+Authorization: Bearer {{token}}
 
 ###
 
@@ -76,6 +108,7 @@ GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes
 @restaurantId=1
 @dishId=2
 GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes/{{dishId}}
+Authorization: Bearer {{token}}
 
 ###
 
@@ -83,30 +116,9 @@ GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes/{{dis
 
 @restaurantId=2
 DELETE {{Restaurants.API_HostAddress}}/api/restaurant/{restaurantId}/dishes
+Authorization: Bearer {{token}}
 
 ###
 
-# Register a new user
 
-POST {{Restaurants.API_HostAddress}}/api/identity/register
-Content-Type: application/json
-
-{
-  "Email": "testuser@test.com",
-  "Password": "%Password123%"
-}
-
-###
-
-# Login
-
-POST {{Restaurants.API_HostAddress}}/api/identity/login
-Content-Type: application/json
-
-{
-  "Email": "testuser@test.com",
-  "Password": "%Password123%"
-}
-
-###
 

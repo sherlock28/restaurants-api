@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Restaurants.Application.Restaurants.Dtos;
 using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
@@ -9,11 +10,13 @@ using Restaurants.Application.Restaurants.Queries.GetRestaurantById;
 
 namespace Restaurants.API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class RestaurantsController(IMediator mediator) : ControllerBase
 {
 	[HttpGet]
+	[AllowAnonymous]
 	public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
 	{
 		var restaurants = await mediator.Send(new GetAllRestaurantsQuery());
@@ -21,6 +24,8 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
 	}
 
 	[HttpGet("{id}")]
+	[ProducesResponseType(StatusCodes.Status200OK)]
+	[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 	public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)
 	{
 		var restaurant = await mediator.Send(new GetRestaurantByIdQuery(id));
@@ -30,6 +35,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
 
 	[HttpPost]
 	[ProducesResponseType(StatusCodes.Status201Created)]
+	[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 	public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantCommand command)
 	{
 		int id = await mediator.Send(command);
@@ -39,6 +45,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
 
 	[HttpDelete("{id}")]
 	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async Task<IActionResult> DeleteRestaurant([FromRoute] int id)
 	{
@@ -49,6 +56,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
 
 	[HttpPatch("{id}")]
 	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async Task<IActionResult> UpdateRestaurant([FromRoute] int id, [FromBody] UpdateRestaurantCommand command)
 	{
