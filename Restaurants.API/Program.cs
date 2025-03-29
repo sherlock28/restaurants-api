@@ -3,6 +3,7 @@ using Restaurants.API.Middlewares;
 using Restaurants.Infrastructure.Seeders;
 using Restaurants.Application.Extensions;
 using Restaurants.Infrastructure.Extensions;
+using Restaurants.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +41,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapIdentityApi<User>();
 
 app.UseAuthorization();
 
