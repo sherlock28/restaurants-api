@@ -1,6 +1,6 @@
 @Restaurants.API_HostAddress = https://localhost:7285
 @token = abc123
-
+ 
 # Login
 
 POST {{Restaurants.API_HostAddress}}/api/identity/login
@@ -21,6 +21,19 @@ Content-Type: application/json
 {
   "Email": "testuser@test.com",
   "Password": "%Password123%"
+}
+
+###
+
+# Update an user
+
+PATCH {{Restaurants.API_HostAddress}}/api/identity/user
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "DateOfBirth": "1993-03-08",
+  "Nationality": "Argentinian"
 }
 
 ###
