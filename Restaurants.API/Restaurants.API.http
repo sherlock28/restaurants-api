@@ -1,6 +1,124 @@
-@Restaurants.API_HostAddress = http://localhost:5218
+@Restaurants.API_HostAddress = https://localhost:7285
+@token = abc123
 
-GET {{Restaurants.API_HostAddress}}/weatherforecast/
-Accept: application/json
+# Login
+
+POST {{Restaurants.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+
+{
+  "Email": "testuser@test.com",
+  "Password": "%Password123%"
+}
 
 ###
+
+# Register a new user
+
+POST {{Restaurants.API_HostAddress}}/api/identity/register
+Content-Type: application/json
+
+{
+  "Email": "testuser@test.com",
+  "Password": "%Password123%"
+}
+
+###
+
+# Retrieve all restaurants
+GET {{Restaurants.API_HostAddress}}/api/restaurants
+
+###
+
+# Retrieve a restaurant that exists
+GET {{Restaurants.API_HostAddress}}/api/restaurants/1
+Authorization: Bearer {{token}}
+
+###
+
+# Retrieve a restaurant that does not exist
+GET {{Restaurants.API_HostAddress}}/api/restaurants/999
+Authorization: Bearer {{token}}
+
+###
+
+# Create a new restaurant
+POST {{Restaurants.API_HostAddress}}/api/restaurants
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Olive Garden",
+  "description": "A family-friendly restaurant chain offering Italian-American cuisine, including pasta, salads, and soups.",
+  "category": "Italian",
+  "hasDelivery": true,
+  "contactEmail": "info@olivegarden.com",
+  "contactNumber": "+18009332527",
+  "city": "Orlando",
+  "street": "123 Pasta Lane",
+  "postalCode": "32-801"
+}
+
+###
+
+# Delete a restaurant
+DELETE {{Restaurants.API_HostAddress}}/api/restaurants/999
+Authorization: Bearer {{token}}
+
+###
+
+# Update a restaurant
+PATCH {{Restaurants.API_HostAddress}}/api/restaurants/999
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "Name": "Updated name",
+  "Description": "This is a sample restaurant description.",
+  "HasDelivery": false
+}
+
+###
+
+# Create a dish for a restaurant
+
+POST {{Restaurants.API_HostAddress}}/api/restaurant/1/dishes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "Name": "Spaghetti Carbonara",
+  "Description": "Spaghetti with eggs, cheese, bacon, and black pepper.",
+  "Price": 12.99,
+  "Kilocalories": 800
+}
+
+###
+
+# Get dishes for restaurant
+
+@restaurantId=1
+GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes
+Authorization: Bearer {{token}}
+
+###
+
+# Get dish by id for restaurant
+
+@restaurantId=1
+@dishId=2
+GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes/{{dishId}}
+Authorization: Bearer {{token}}
+
+###
+
+# Delete all dishes from restaurant
+
+@restaurantId=2
+DELETE {{Restaurants.API_HostAddress}}/api/restaurant/{restaurantId}/dishes
+Authorization: Bearer {{token}}
+
+###
+
+
+
