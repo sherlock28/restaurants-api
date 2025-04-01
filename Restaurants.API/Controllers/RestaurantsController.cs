@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Restaurants.Domain.Constants;
 using Restaurants.Application.Restaurants.Dtos;
 using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
@@ -34,8 +35,10 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
 	}
 
 	[HttpPost]
+	[Authorize(Roles = UserRoles.Owner)]
 	[ProducesResponseType(StatusCodes.Status201Created)]
 	[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+	[ProducesResponseType(StatusCodes.Status403Forbidden)]
 	public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantCommand command)
 	{
 		int id = await mediator.Send(command);
