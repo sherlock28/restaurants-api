@@ -15,6 +15,7 @@ public class IdentityController(IMediator mediator) : ControllerBase
 	[HttpPatch("user")]
 	[Authorize]
 	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async Task<IActionResult> UpdateUserDetails(UpdateUserDetailsCommand command)
 	{
@@ -26,6 +27,7 @@ public class IdentityController(IMediator mediator) : ControllerBase
 	[HttpPost("userRole")]
 	[Authorize(Roles = UserRoles.Admin)]
 	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async Task<IActionResult> AssignUserRole(AssignUserRoleCommand command)
 	{
@@ -37,6 +39,7 @@ public class IdentityController(IMediator mediator) : ControllerBase
 	[HttpDelete("userRole")]
 	[Authorize(Roles = UserRoles.Admin)]
 	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async Task<IActionResult> UnassignUserRole(UnassignUserRoleCommand command)
 	{
