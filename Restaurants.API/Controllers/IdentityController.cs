@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Restaurants.Domain.Constants;
+using Restaurants.Application.Users.Commands.AssignUserRole;
 using Restaurants.Application.Users.Commands.UpdateUserDetails;
 
 namespace Restaurants.API.Controllers;
@@ -14,6 +16,17 @@ public class IdentityController(IMediator mediator) : ControllerBase
 	[ProducesResponseType(StatusCodes.Status204NoContent)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async Task<IActionResult> UpdateUserDetails(UpdateUserDetailsCommand command)
+	{
+		await mediator.Send(command);
+
+		return NoContent();
+	}
+
+	[HttpPost("userRole")]
+	[Authorize(Roles = UserRoles.Admin)]
+	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	public async Task<IActionResult> AssignUserRole(AssignUserRoleCommand command)
 	{
 		await mediator.Send(command);
 
