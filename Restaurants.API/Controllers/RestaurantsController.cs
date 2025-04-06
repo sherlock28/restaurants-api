@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Restaurants.Domain.Constants;
+using Restaurants.Infrastructure.Authorization.Constants;
 using Restaurants.Application.Restaurants.Dtos;
 using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Commands.DeleteRestaurant;
@@ -25,6 +26,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
 	}
 
 	[HttpGet("{id}")]
+	[Authorize(Policy = PolicyNames.HasNationality)]
 	[ProducesResponseType(StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 	public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)

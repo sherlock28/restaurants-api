@@ -2,6 +2,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Restaurants.Domain.Entities;
+using Restaurants.Infrastructure.Authorization.Constants;
 
 namespace Restaurants.Infrastructure.Authorization;
 
@@ -16,12 +17,12 @@ public class RestaurantUserClaimsPrincipalFactory(
 
 		if (user.Nationality != null)
 		{
-			id.AddClaim(new Claim("Nationality", user.Nationality));
+			id.AddClaim(new Claim(AppClaimTypes.Nationality, user.Nationality));
 		}
 
 		if (user.DateOfBirth != null)
 		{
-			id.AddClaim(new Claim("DateOfBirth", user.DateOfBirth.ToString()!));
+			id.AddClaim(new Claim(AppClaimTypes.DateOfBirth, user.DateOfBirth.ToString()!));
 		}
 
 		return new ClaimsPrincipal(id);

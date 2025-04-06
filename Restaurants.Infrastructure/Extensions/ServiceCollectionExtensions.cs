@@ -8,6 +8,7 @@ using Restaurants.Infrastructure.Seeders;
 using Restaurants.Infrastructure.Persistence;
 using Restaurants.Infrastructure.Repositories;
 using Restaurants.Infrastructure.Authorization;
+using Restaurants.Infrastructure.Authorization.Constants;
 
 namespace Restaurants.Infrastructure.Extensions;
 
@@ -24,6 +25,10 @@ public static class ServiceCollectionExtensions
 			.AddRoles<IdentityRole>()
 			.AddClaimsPrincipalFactory<RestaurantUserClaimsPrincipalFactory>()
 			.AddEntityFrameworkStores<RestaurantsDbContext>();
+
+		services.AddAuthorizationBuilder()
+			.AddPolicy(PolicyNames.HasNationality, builder =>
+			builder.RequireClaim(AppClaimTypes.Nationality, "Argentinian", "Brazilian"));
 
 		services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
 		services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
