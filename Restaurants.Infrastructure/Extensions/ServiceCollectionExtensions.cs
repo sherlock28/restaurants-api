@@ -9,6 +9,8 @@ using Restaurants.Infrastructure.Persistence;
 using Restaurants.Infrastructure.Repositories;
 using Restaurants.Infrastructure.Authorization;
 using Restaurants.Infrastructure.Authorization.Constants;
+using Microsoft.AspNetCore.Authorization;
+using Restaurants.Infrastructure.Authorization.Requirements;
 
 namespace Restaurants.Infrastructure.Extensions;
 
@@ -28,7 +30,11 @@ public static class ServiceCollectionExtensions
 
 		services.AddAuthorizationBuilder()
 			.AddPolicy(PolicyNames.HasNationality, builder =>
-			builder.RequireClaim(AppClaimTypes.Nationality, "Argentinian", "Brazilian"));
+			builder.RequireClaim(AppClaimTypes.Nationality, "Argentinian", "Brazilian"))
+			.AddPolicy(PolicyNames.AtLeast20, builder =>
+			builder.AddRequirements(new MinimumAgeRequirement(20)));
+
+		services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
 
 		services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
 		services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
