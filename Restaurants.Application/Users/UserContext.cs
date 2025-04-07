@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 
@@ -31,7 +32,7 @@ public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContex
 		var dateOfBirthString = user.FindFirst(c => c.Type == "DateOfBirth")?.Value;
 		var dateOfBirth = dateOfBirthString == null
 			? (DateOnly?)null
-			: DateOnly.ParseExact(dateOfBirthString, "yyyy-MM-dd");
+			: DateOnly.ParseExact(dateOfBirthString, new[] { "yyyy-MM-dd", "M/d/yyyy", "MM/dd/yyyy" }, CultureInfo.InvariantCulture);
 
 		return new CurrentUser(userId, email, roles, nationality, dateOfBirth);
 	}
