@@ -488,3 +488,5 @@ appsettings.*.json
 postgres/postgres.env
 pgadmin/pgadmin.env
 pgadmin/pgpass
+
+.sonarqube/

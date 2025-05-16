@@ -9,12 +9,12 @@ internal class RestaurantsDbContext(DbContextOptions<RestaurantsDbContext> optio
 	internal DbSet<Restaurant> Restaurants { get; set; }
 	internal DbSet<Dish> Dishes { get; set; }
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	protected override void OnModelCreating(ModelBuilder builder)
 	{
-		base.OnModelCreating(modelBuilder);
-		modelBuilder.Entity<Restaurant>()
+		base.OnModelCreating(builder);
+		builder.Entity<Restaurant>()
 			.OwnsOne(r => r.Address);
-		modelBuilder.Entity<Restaurant>()
+		builder.Entity<Restaurant>()
 		.HasMany(r => r.Dishes)
 		.WithOne()
 		.HasForeignKey(d => d.RestaurantId);
