@@ -35,6 +35,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("AllowAll");
+
 app.MapGroup("/api/identity")
 	.WithTags("Identity")
 	.MapIdentityApi<User>();

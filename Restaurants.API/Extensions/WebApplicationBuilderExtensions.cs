@@ -8,6 +8,16 @@ public static class WebApplicationBuilderExtensions
 {
 	public static void AddPresentation(this WebApplicationBuilder builder)
 	{
+		builder.Services.AddCors(options =>
+		{
+			options.AddPolicy("AllowAll", policy =>
+			{
+				policy.AllowAnyOrigin()
+					  .AllowAnyMethod()
+					  .AllowAnyHeader();
+			});
+		});
+
 		builder.Services.AddAuthentication();
 		builder.Services.AddControllers();
 		builder.Services.AddSwaggerGen(c =>
@@ -19,15 +29,15 @@ public static class WebApplicationBuilderExtensions
 			});
 
 			c.AddSecurityRequirement(new OpenApiSecurityRequirement
-	{
-		{
-			new OpenApiSecurityScheme
 			{
-				Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "BearerAuth"}
-			},
-			[]
-		}
-	});
+				{
+					new OpenApiSecurityScheme
+					{
+						Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "BearerAuth"}
+					},
+					[]
+				}
+			});
 		});
 
 		builder.Services.AddEndpointsApiExplorer();
