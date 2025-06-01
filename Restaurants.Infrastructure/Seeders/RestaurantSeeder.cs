@@ -38,11 +38,11 @@ internal class RestaurantSeeder(RestaurantsDbContext dbContext) : IRestaurantSee
 				},
 				new (UserRoles.Owner)
 				{
-					NormalizedName = UserRoles.User.ToUpper(),
+					NormalizedName = UserRoles.Owner.ToUpper(),
 				},
 				new (UserRoles.Admin)
 				{
-					NormalizedName = UserRoles.User.ToUpper(),
+					NormalizedName = UserRoles.Admin.ToUpper(),
 				},
 			];
 
