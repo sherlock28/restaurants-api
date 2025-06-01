@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 using Restaurants.Application.Users;
 
 namespace Restaurants.Infrastructure.Authorization.Requirements;
@@ -12,9 +12,9 @@ public class MinimumAgeRequirementHandler(
 	{
 		var currentUser = userContext.GetCurrentUser();
 
-		logger.LogInformation("User: {Email}, date of birth {DoB} - Handling MinimumAgeRequirement", currentUser.Email, currentUser.DateOfBirth);
+		logger.LogInformation("User: {Email}, date of birth {DoB} - Handling MinimumAgeRequirement", currentUser?.Email, currentUser?.DateOfBirth);
 
-		if (currentUser.DateOfBirth == null)
+		if (currentUser?.DateOfBirth == null)
 		{
 			logger.LogWarning("User date of birth is null");
 			context.Fail();
