@@ -31,12 +31,15 @@ public static class ServiceCollectionExtensions
 			.AddEntityFrameworkStores<RestaurantsDbContext>();
 
 		services.AddAuthorizationBuilder()
-			.AddPolicy(PolicyNames.HasNationality, builder =>
-			builder.RequireClaim(AppClaimTypes.Nationality, "Argentinian", "Brazilian"))
-			.AddPolicy(PolicyNames.AtLeast20, builder =>
-			builder.AddRequirements(new MinimumAgeRequirement(20)));
+			.AddPolicy(PolicyNames.HasNationality,
+				builder => builder.RequireClaim(AppClaimTypes.Nationality, "Argentinian", "Brazilian"))
+			.AddPolicy(PolicyNames.AtLeast20,
+				builder => builder.AddRequirements(new MinimumAgeRequirement(20)))
+			.AddPolicy(PolicyNames.CreatedAtleast2Restaurants,
+				builder => builder.AddRequirements(new CreatedMultipleRestaurantsRequirement(2)));
 
 		services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+		services.AddScoped<IAuthorizationHandler, CreatedMultipleRestaurantsHandler>();
 
 		services.AddScoped<IRestaurantAuthorizationService, RestaurantAuthorizationService>();
 
