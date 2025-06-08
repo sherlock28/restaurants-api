@@ -1,6 +1,6 @@
 using AutoMapper;
-using Restaurants.Application.Dishes.Commands.CreateDish;
 using Restaurants.Domain.Entities;
+using Restaurants.Application.Dishes.Commands.CreateDish;
 
 namespace Restaurants.Application.Dishes.Dtos;
 

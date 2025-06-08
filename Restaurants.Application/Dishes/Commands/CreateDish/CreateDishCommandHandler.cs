@@ -1,8 +1,8 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Restaurants.Domain.Constants;
 using Restaurants.Domain.Entities;
+using Restaurants.Domain.Constants;
 using Restaurants.Domain.Exceptions;
 using Restaurants.Domain.Interfaces;
 using Restaurants.Domain.Repositories;
