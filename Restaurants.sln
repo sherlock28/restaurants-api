@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución",
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurants.ApplicationTests", "Restaurants.ApplicationTests\Restaurants.ApplicationTests.csproj", "{E5AA63B4-62B1-4178-A855-265A1C0EC80C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{81F93F14-DD42-457A-8032-51E39422FAB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81F93F14-DD42-457A-8032-51E39422FAB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81F93F14-DD42-457A-8032-51E39422FAB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5AA63B4-62B1-4178-A855-265A1C0EC80C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5AA63B4-62B1-4178-A855-265A1C0EC80C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5AA63B4-62B1-4178-A855-265A1C0EC80C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5AA63B4-62B1-4178-A855-265A1C0EC80C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
