@@ -1,7 +1,9 @@
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Restaurants.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Restaurants.Application.Users;
+using Restaurants.Domain.Entities;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Restaurants.Infrastructure.Persistence;
 
@@ -11,6 +13,7 @@ internal class RestaurantsDbContext(
 {
 	internal DbSet<Restaurant> Restaurants { get; set; }
 	internal DbSet<Dish> Dishes { get; set; }
+	internal DbSet<AuditLog> AuditLogs { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder builder)
 	{
