@@ -23,7 +23,7 @@ public class AuditBehavior<TRequest, TResponse>(IUserContext userContext) : IPip
 
 		var response = await next();
 
-		using (var scope = AuditScope.Create(new AuditScopeOptions
+		await using (var scope = AuditScope.Create(new AuditScopeOptions
 		{
 			EventType = request!.GetType().Name,
 			CreationPolicy = EventCreationPolicy.InsertOnEnd,

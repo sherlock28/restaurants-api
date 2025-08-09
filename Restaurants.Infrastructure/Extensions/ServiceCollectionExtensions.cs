@@ -1,12 +1,13 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Interfaces;
 using Restaurants.Domain.Repositories;
 using Restaurants.Infrastructure.Seeders;
+using Restaurants.Infrastructure.Providers;
 using Restaurants.Infrastructure.Persistence;
 using Restaurants.Infrastructure.Repositories;
 using Restaurants.Infrastructure.Authorization;
@@ -46,5 +47,11 @@ public static class ServiceCollectionExtensions
 		services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
 		services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
 		services.AddScoped<IDishRepository, DishRepository>();
+
+		services.AddScoped<MultiDataProvider>();
+
+		var multiDataProvider = services.BuildServiceProvider().GetRequiredService<MultiDataProvider>();
+
+		Audit.Core.Configuration.Setup().UseCustomProvider(multiDataProvider);
 	}
 }
