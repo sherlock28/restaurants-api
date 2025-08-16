@@ -1,5 +1,5 @@
 using MediatR;
-using AutoMapper;
+using MapsterMapper;
 using Microsoft.Extensions.Logging;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories;

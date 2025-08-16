@@ -1,5 +1,3 @@
-using Restaurants.Application.Restaurants.Dtos;
-
 namespace Restaurants.Application.Common;
 
 public class PagedResult<T>
