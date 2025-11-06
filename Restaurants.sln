@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución",
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		docker-compose.yml = docker-compose.yml
+		random-restaurants.py = random-restaurants.py
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -50,5 +51,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {43F84928-8770-438C-B618-D039F30FD38D}
 	EndGlobalSection
 EndGlobal
