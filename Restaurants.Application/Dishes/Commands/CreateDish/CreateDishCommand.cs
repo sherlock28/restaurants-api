@@ -1,7 +1,9 @@
 using MediatR;
+using Restaurants.Application.Common.Attributes;
 
 namespace Restaurants.Application.Dishes.Commands.CreateDish;
 
+[AuditLog]
 public class CreateDishCommand : IRequest<int>
 {
 	public string Name { get; set; } = default!;

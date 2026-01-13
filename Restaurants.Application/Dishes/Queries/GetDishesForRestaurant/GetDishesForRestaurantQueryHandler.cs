@@ -1,10 +1,10 @@
 using MediatR;
+using MapsterMapper;
 using Microsoft.Extensions.Logging;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Exceptions;
 using Restaurants.Domain.Repositories;
 using Restaurants.Application.Dishes.Dtos;
-using AutoMapper;
 
 namespace Restaurants.Application.Dishes.Queries.GetDishesForRestaurant;
 

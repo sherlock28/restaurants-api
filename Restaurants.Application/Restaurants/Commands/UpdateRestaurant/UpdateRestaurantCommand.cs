@@ -1,7 +1,9 @@
 using MediatR;
+using Restaurants.Application.Common.Attributes;
 
 namespace Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 
+[AuditLog]
 public class UpdateRestaurantCommand : IRequest
 {
 	public int Id { get; set;  }

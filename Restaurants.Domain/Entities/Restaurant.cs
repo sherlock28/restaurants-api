@@ -1,6 +1,6 @@
 namespace Restaurants.Domain.Entities;
 
-public class Restaurant
+public class Restaurant : BaseEntity
 {
 	public int Id { get; set; }
 	public string Name { get; set; } = default!;
@@ -13,4 +13,7 @@ public class Restaurant
 
 	public Address? Address { get; set; }
 	public List<Dish> Dishes { get; set; } = new();
+
+	public User Owner { get; set; } = default!;
+	public string OwnerId { get; set; } = default!;
 }

@@ -1,6 +1,6 @@
 services:
   database:
-    image: postgres:14
+    image: postgres:14-alpine
     container_name: database
     restart: always
     ports:
@@ -11,7 +11,7 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   pgadmin:
-    image: dpage/pgadmin4:latest
+    image: dpage/pgadmin4:9.9
     container_name: pgadmin
     restart: always
     ports:
@@ -24,6 +24,8 @@ services:
       - ./pgadmin/pgpass:/pgpass
     depends_on:
       - database
+
 volumes:
   pgdata:
   pgadmindata:
+  seqdata:
